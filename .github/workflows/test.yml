@@ -1,0 +1,33 @@
+name: Test Workflow
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout Repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set Up Python
+      - name: Set Up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+
+      # Step 3: Run Test 1: File with 10 numbers
+      - name: Run Test 1:File with 10 numbers
+        run: |
+          python3 find_lowest_number_project/find_lowest_number.py find_lowest_number_project/test_data/test1_input.txt output1.txt
+          cat output1.txt
+          diff output1.txt find_lowest_number_project/test_data/test1_expected.txt
+
+      - name: Debug Test 1
+        run: |
+          cat find_lowest_number_project/test_data/test1_input.txt
+          cat find_lowest_number_project/test_data/test1_expected.txt
