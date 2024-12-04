@@ -1,1 +1,1 @@
-No valid numbers found in file.
+No numbers found in file
